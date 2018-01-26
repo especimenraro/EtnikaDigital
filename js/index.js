@@ -1,0 +1,51 @@
+$(function () {
+	var intervalo
+
+	intervalo = setInterval(function () {
+		
+		// CODIGO PARA IMAGEN MULTIMEDIA
+		
+if (document.getElementById("video_1").currentTime > 1 && document.getElementById("video_1").currentTime <1.5  ) {
+	
+	$('#multimedia').css('top', 0)
+	$('#multimedia').css('opacity', 1)
+	$('#multimedia').css('left', 50)
+} // FIN IF
+
+// CODIGO PARA IMAGEN EDUCACION
+		
+if (document.getElementById("video_1").currentTime > 2 && document.getElementById("video_1").currentTime <2.5  ) {
+	
+	$('#educacion').css('top', 0)
+	$('#educacion').css('opacity', 1)
+	$('#educacion').css('left', 200)
+} // FIN IF
+
+// CODIGO PARA IMAGEN AUDIOVISUAL
+		
+if (document.getElementById("video_1").currentTime > 3 && document.getElementById("video_1").currentTime <3.5  ) {
+	
+	$('#audiovisual').css('top', 0)
+	$('#audiovisual').css('opacity', 1)
+	$('#audiovisual').css('left', 350)
+} // FIN IF
+
+// CODIGO PARA IMAGEN AUDIOVISUAL
+		
+if (document.getElementById("video_1").currentTime > 4 && document.getElementById("video_1").currentTime <4.5  ) {
+	
+	$('#blog').css('top', 0)
+	$('#blog').css('opacity', 1)
+	$('#blog').css('left', 500)
+} // FIN IF
+
+
+
+
+},100)
+
+$('#audiovisual').on('click', function () {
+window.location.href = "multimedios.html"
+})
+});
+

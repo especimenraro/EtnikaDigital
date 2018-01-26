@@ -1,0 +1,141 @@
+
+  /*  AIzaSyDp6W732mOfVZeHli63jOZ3yQl_Or5nyqs */
+$(function () {
+var puntero_size_large = "1.25",
+			puntero_size_small = "0.8",
+			escala_small = 'scale(' + puntero_size_small + ',' + puntero_size_small + ')',
+			escala_large = 'scale(' + puntero_size_large + ',' + puntero_size_large + ')',
+			flag = 0,
+			fondo_x = '45%',
+			fondo_y = '80%'
+$('#desplazamiento_vertical').css('top',15)
+$('#desplazamiento_vertical').css('left',window.innerWidth/2)
+
+$('#desplazamiento_horizontal').css('top',window.innerHeight/2)
+$('#desplazamiento_horizontal').css('left',window.innerWidth-60)
+
+
+
+
+setInterval(function () {
+	
+	$('#img_cursor').css('transition-duration',"1s")
+	if (!flag) {
+			$('#img_cursor').css('transform',escala_large)
+			flag = 1
+			} else {
+			$('#img_cursor').css('transform',escala_small)
+			flag = 0
+			}
+			
+},1000)
+$('#marca1').on('click', function () {
+	$('.proyector').css('visibility','visible')
+	$('.proyector').css('opacity','1')
+})
+$('#marca2').on('click', function () {
+	$('.contenedor_articulo').css('visibility','visible')
+	$('.contenedor_articulo').css('opacity','1')
+})
+$('#marca3').on('click', function () {
+	$('.contenedor_lateral').css('visibility','visible')
+	$('.contenedor_lateral').css('opacity','1')
+})
+$('#marca4').on('click', function () {
+	$('.contenedor_moderno').css('visibility','visible')
+	$('.contenedor_moderno').css('opacity','1')
+})
+
+$('#cierra_proyector').on('click', function () {
+	$('.proyector').css('visibility','hidden')
+	$('.proyector').css('opacity','0')
+})
+$('#cierra_articulo').on('click', function () {
+	$('.contenedor_articulo').css('visibility','hidden')
+	$('.contenedor_articulo').css('opacity','0')
+})
+$('#cierra_lateral').on('click', function () {
+	$('.contenedor_lateral').css('visibility','hidden')
+	$('.contenedor_lateral').css('opacity','0')
+})
+$('#cierra_moderno').on('click', function () {
+	$('.contenedor_moderno').css('visibility','hidden')
+	$('.contenedor_moderno').css('opacity','0')
+})
+
+$(document).on('mousemove', function (e) {
+	$('#img_cursor').css('transition-duration',"0s")
+	
+var posx = e.clientX - 16,
+			posy = e.clientY - 16,
+			coord = posx + "  " + posy + " " + puntero_size_large
+			$('#coordenadas').text(coord)
+			
+			if ($('#img_cursor').css('width') == "32px") {
+				$('#img_cursor').css('top',posy)
+				$('#img_cursor').css('left',posx)
+			}else {
+				posx = e.clientX - 20,
+				posy = e.clientY - 20
+				$('#img_cursor').css('top',posy)
+				$('#img_cursor').css('left',posx)
+} // FIN IF
+
+		
+
+}) // FIN MOUSE MOVE
+
+$('#desplazamiento_vertical').on('click', function () {
+let clase = $('#desplazamiento_vertical').find('i').attr('class')
+
+	if (clase == "fi-arrow-up") {
+		fondo_y = '58%'
+let bp = fondo_x +" "+ fondo_y
+$('.fondo').css('background-position',bp)
+$('#desplazamiento_vertical').find('i').removeClass('fi-arrow-up')
+$('#desplazamiento_vertical').find('i').addClass('fi-arrow-down')
+$('#desplazamiento_vertical').css('top',window.innerHeight-60)
+}
+if (clase == "fi-arrow-down") {
+	fondo_y = '80%'
+let bp = fondo_x +" "+ fondo_y
+$('.fondo').css('background-position',bp)
+$('#desplazamiento_vertical').find('i').removeClass('fi-arrow-down')
+$('#desplazamiento_vertical').find('i').addClass('fi-arrow-up')
+$('#desplazamiento_vertical').css('top',15)
+}
+
+}) // FIN CLICK DESPLZAMIENTO VERTICAL
+
+$('#desplazamiento_horizontal').on('click', function () {
+let clase = $('#desplazamiento_horizontal').find('i').attr('class')
+	if (clase == "fi-arrow-right") {
+		fondo_x = '55%'
+let bp = fondo_x +" "+ fondo_y
+$('.fondo').css('background-position',bp)
+$('#desplazamiento_horizontal').find('i').removeClass('fi-arrow-right')
+$('#desplazamiento_horizontal').find('i').addClass('fi-arrow-left')
+$('#desplazamiento_horizontal').css('left',60)
+}
+if (clase == "fi-arrow-left") {
+	fondo_x = '45%'
+let bp = fondo_x +" "+ fondo_y
+$('.fondo').css('background-position',bp)
+$('#desplazamiento_horizontal').find('i').removeClass('fi-arrow-left')
+$('#desplazamiento_horizontal').find('i').addClass('fi-arrow-right')
+$('#desplazamiento_horizontal').css('left',window.innerWidth-60)
+}
+
+}) // FIN CLICK DESPLZAMIENTO HORIZONTAL
+})
+  
+
+
+
+
+
+
+
+
+
+
