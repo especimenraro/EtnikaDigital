@@ -14,6 +14,7 @@
 
 </head>
 <body class="fondo">
+<div id="Stats-output"></div>
 <div id="WebGL-output" class="contenedor_mapa">
 
 </div>
