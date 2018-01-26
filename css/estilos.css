@@ -1,5 +1,4 @@
-.contenedor_mapa {
-width: 1000px;
-height: 800px;
-
+.fondo {
+margin: 0;
+overflow: hidden;
 }
