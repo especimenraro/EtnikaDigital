@@ -1,5 +1,69 @@
-.contenedor_mapa {
-width: 1000px;
-height: 800px;
-
+@font-face {
+font-family: etnika;
+src:  url('fonts/capacitor.ttf');
 }
+
+.contenedor_mapa {
+position: absolute;
+top: 0px;
+left: 0px;
+z-index: -1;
+}
+.contenedor-interfaz{
+z-index: 111;
+}
+
+.barra-menu {
+background-color: rgba(255,255,255,0);
+}
+.texto-menu {
+font-family: etnika;
+font-size: 15px;
+color: white;
+margin-left: 5px;
+margin-right: 5px;
+}
+.contenedor-iconos{
+height: 800px;
+}
+
+.contenedor-contenido-menu {
+display: none;
+}
+#qs {
+color: white;
+}
+#lineas {
+display: none;
+color: white;
+}
+
+#contacto {
+display: none;
+color: white;
+}
+#acercade {
+display: none;
+color: white;
+}
+.contenedor-iconos-social {
+height: 220px;
+width: 100%;
+background-color: rgba(255,255,255,0.4);
+border-radius: 5px;
+}
+.icono-social {
+font-size: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
