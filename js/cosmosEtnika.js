@@ -1,21 +1,6 @@
 $(function () {
 init()
-$('#menu-qs').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#qs').toggle()
-		})
-$('#menu-lineas').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#lineas').toggle()
-		})
-$('#menu-contacto').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#contacto').toggle()
-		})
-$('#menu-acercade').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#acercade').toggle()
-		})
+
 }) // FIN DOCUMENT.READY
 
 
@@ -55,7 +40,7 @@ scene.background = new THREE.CubeTextureLoader()
 // AGREGA EJES
 
 var ejes = new THREE.AxesHelper(20,20,20)
-scene.add(ejes)
+//scene.add(ejes)
 
 
 

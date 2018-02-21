@@ -1,21 +1,6 @@
 $(function () {
 init()
-$('#menu-qs').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#qs').toggle()
-		})
-$('#menu-lineas').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#lineas').toggle()
-		})
-$('#menu-contacto').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#contacto').toggle()
-		})
-$('#menu-acercade').click(function () {
-		$('.contenedor-contenido-menu').toggle()
-		$('#acercade').toggle()
-		})
+
 }) // FIN DOCUMENT.READY
 
 
@@ -200,7 +185,7 @@ renderScene()
 
 
 function renderScene() {
-stats.update()
+//stats.update()
 var delta = clock.getDelta();
 orbitControls.update(delta);
 // update the picking ray with the camera and mouse position

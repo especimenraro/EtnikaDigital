@@ -1,322 +1,77 @@
+@font-face {
+font-family: etnika;
+src:  url(../fonts/Jura-Light.otf);
+}
 .fondo {
-background-color: black;
-height: 900px;
-cursor:none;
-background-image: url(../imagenes/mapaMundi.jpg);
-background-position: 45% 80%;
-background-attachment: local;
-background-size: 450% 450%;
-overflow-y:hidden; 
-transition-duration: 1s;
+background-color: gray;
+overflow: hidden;
 }
- .contenedor_icono_nav {
-position:absolute; 
- }
- .icono_nav{
-font-size:48px;
-color: rgba(255,255,255,0.3);
-position:relative; 
- transition-duration: 1s;
- z-index: 1;
- }
- 
- .icono_nav:hover{
-color: rgba(255,255,255,1);
- }
- 
-#img_cursor {
-	position: absolute;
-width: 32px;
-height: 32px;
-top: 200px;
-left: 200px;
-transition-duration: 2s;
-}
-
-#video_1 {
-width:100%;
-
-
-}
-
-.capa-1 {
+.contenedor_mapa {
 position: absolute;
-width: 1080px;
-height: 720px;
 top: 0px;
+left: 0px;
 z-index: -1;
 }
-
-.capa-2 {
-position: absolute;
-
-width: 1080px;
-height: 720px;
-top: 0px;
-z-index: 1;
+.contenedor-interfaz{
+z-index: 111;
 }
 
-.imagen_menu {
-	position: relative;
-	opacity: 0;
-top: 300px;
-left: 500px;
-width: 100px;
-height: auto;
-transition-duration: 5s;
-}
-
-#map {
-height: 900px;
-}
-
-.proyector {
-position: absolute;
-visibility: hidden;
-opacity: 0;
-display: flex;
-flex-flow: row;
-background-color: rgba(206,197,172,0.9);
-top: 90px;
-left: 250px;
-width: 800px;
-height: 400px;
-cursor: default;
-transition-duration: 1s;
-
-}
-
-.videoContenedor {
-position: relative;
-width: 400px;
-height: 250px;
-margin: 20px 20px 20px 20px;
-
-}
-
-.proyeccion{
-width: 100%;
-
-}
-.descriptor {
-position: relative;
-margin: 20px 20px 20px 20px;
-}
-
-.contenedor_articulo {
-
-position: absolute;
-visibility: hidden;
-opacity: 0;
-background-color: rgba(206,197,172,0.9);
-top: 90px;
-left: 250px;
-width: 800px;
-height: 400px;
-cursor: default;
-transition-duration: 1s;
-overflow-x: hidden;
-overflow-y: scroll;
-
-}
-.primer_parrafo {
-position: relative;
-display: flex;
-flex-flow:row;
-
-}
-.contenedor_imagen {
-position: relative;
-width: 50%;
-}
-
-.contenedor_texto {
-position: relative;
-}
-
-.contenedor_video {
-position: relative;
-width: 100%;
-margin: 12px 12px 12px 12px;
-padding: 12px 12px 12px 12px;
-}
-
-#video_articulo {
-position: relative;
-width: 100%;
-
-}
-
-
-
-p {
-	font-family: sans-serif;
-	font-size: 12px;
-	text-align: justify;
-	font-weight: lighter;
-}
-
-.contenedor_lateral {
-position: absolute;
-visibility: hidden;
-opacity: 0;
-background-color: rgba(206,197,172,0.9);
-top: 0px;
-left: 0px;
-width: 40%;
-height: 100%;
-cursor: default;
-transition-duration: 1s;
-overflow-x: hidden;
-overflow-y: scroll;
-}
-
-.contenedor_lateral_imagen {
-position: relative;
-margin: 10px 10px;
-
-}
-
-.contenedor_lateral_titulo {
-position: relative;
-margin: 10px 10px;
-height: 60px;
-background-color:rgba(206,197,172,0.9);
-}
-.contenedor_lateral_descriptor {
-position: relative;
-margin: 10px 10px;
-
-}
-.contenedor_lateral_galeria {
-position: relative;
-display: flex;
-flex-flow: row wrap;
-overflow-x: scroll;
-}
-.imagen_galeria {
-position: relative;
-width: 30%;
-
-}
-
-.contenedor_moderno {
-position: absolute;
-visibility: hidden;
-display: block;
-opacity: 0;
-background-color: rgba(206,197,172,0.9);
-top: 90px;
-left: 250px;
-width:60%;
-height: 80%;
-cursor: default;
-transition-duration: 1s;
-overflow-x: hidden;
-overflow-y: scroll;
-}
-.contenedor_moderno_fila {
-position: relative;
-display: flex;
-flex-flow:row no-wrap;
-
-
-}
-.contenedor_moderno_contenido {
-position: relative;
-margin: 1px;
-border: 1px solid white;
-width: 33%;
-height: 32%;
-}
-
-.contenedor_moderno_titulo {
-position: absolute;
-top: 0px;
-left: 5px;
+.barra-menu {
+background-color: rgba(255,255,255,0);
 width: 100%;
 }
-.titulo_moderno {
-position: relative;
-font-size: 12px;
-color: orange;
-}
-.contenedor_moderno_controles {
-position: absolute;
-bottom: 0%;
-left: 0px;
-width: 100%;
-height: 20%;
-
-}
-
-.simbolo_control {
-position: relative;
+.texto-menu {
+font-family: etnika;
+font-size: 18px;
 color: white;
+margin-left: 5px;
+margin-right: 5px;
+}
+.texto-contenido {
+font-family: etnika;
+font-size: 18px;
+color: white;
+margin-left: 5px;
+margin-right: 5px;
+}
+.contenedor-general{
+
 width: 100%;
+
+
 }
-#ir{
-position: absolute;
+.contenedor-iconos-social {
+height: 220px;
 width: 100%;
-left: 5px; 
+background-color: rgba(0,0,0,0.6);
+border-radius: 5px;
 }
+.icono-social {
+font-size: 50px;
+background-color: white;
+}
+.contenedor-contenido-menu {
 
-#info{
-position: absolute;
-width: 100%;
-
-left: 90%; 
 
 }
-#info:hover + .informacion {
-display: block;
+#qs {
+	display: none;
+color: white;
 }
-
-.informacion {
-position: relative;
+#lineas {
 display: none;
-background-color: yellowgreen;
-width: 100%;
-height: 200px;
-bottom:0px;
+color: white;
+overflow-y: scroll;
 }
 
-.marcador {
-position: absolute;
-width: 30px;
-height: 60px;
-cursor: default;
+#contacto {
+display: none;
+color: white;
 }
-
-#marca1{
-position: absolute;
-top: 400px;
-left: 300px;
+#acercade {
+display: none;
+color: white;
 }
-
-#marca2{
-position: absolute;
-top: 400px;
-left: 600px;
-}
-
-#marca3{
-position: absolute;
-top: 400px;
-left: 900px;
-}
-
-#marca4{
-position: absolute;
-top: 400px;
-left: 1200px;
-}
-
-
-
-
-
-
 
 
 

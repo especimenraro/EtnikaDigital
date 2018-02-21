@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="css/jquery-ui.min.css">
   	<link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
-    <!link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/app.css">
+    <!link rel="stylesheet" href="css/estilos.css">
    <script type="text/javascript" src="./libs/three.js"></script>
    <script type="text/javascript" src="./libs/stats.min.js"></script>
    <script type="text/javascript" src="./libs/OrbitControls.js"></script>
@@ -20,98 +20,139 @@
 </head>
 <body class="fondo">
 
-<div id="Stats-output"></div>
+<!div id="Stats-output"></div>
 <div id="WebGL-output" class="contenedor_mapa"></div>
-<div class="expanded row  contenedor-interfaz">
-	<div class="column large-1">
-		<img src="iconos/smi358.png" alt="">
+
+<! CONTENEDOR DE LA INTERFAZ HTML>
+
+<div class="expanded row contenedor-interfaz ">
+<div class="column large-12  ">
+<! PRIMERA LINEA - LOGO Y MENU>
+	<div class="expanded row align-left contenedor-menu">
+		<div class="column large-1">
+			<img src="imagenes/logo.jpg" alt="">
+		</div>
+		
+		<div class="column large-offset-1 large-10">
+			<div class="expanded row align-right">
+				<div class="column large-offset-6 large-6">
+					<div class="barra-menu">
+						<div class="top-bar-right">
+									<ul class="menu">
+										<li><a id="menu-qs" class="texto-menu">Quienes Somos </a></li>		
+										<li><a id="menu-lineas" class="texto-menu">Lineas de Trabajo</a></li>	
+										<li><a id="menu-contacto" class="texto-menu">Contacto</a></li>	
+										<li><a id="menu-acercade" class="texto-menu">Acerca de</a></li>				
+									</ul>				
+					</div>
+					</div>
+				</div>		
+			</div>	
 	</div>
-	<div class="column large-11">
-		<div class="expanded row align-right">
-			<div class="column large-10">
-				<div class="top-bar barra-menu">
-					<div class="top-bar-right">
-					<ul class="menu">
-						<li><p id="menu-qs" class="texto-menu">Quienes Somos </p></li>		
-						<li><p id="menu-lineas" class="texto-menu">Lineas de Trabajo</p></li>	
-						<li><p id="menu-contacto" class="texto-menu">Contacto</p></li>	
-						<li><p id="menu-acercade" class="texto-menu">Acerca de</p></li>				
-					</ul>				
+	
+	</div>
+	
+	
+	
+	<! ICONOS SOCIALES Y CONTENIDOS DEL MENU>
+	
+	<div class="expanded row contenedor-general ">
+	
+	<! ICONOS SOCIALES >
+	
+	<div class="column large-1 align-self-bottom">
+		<div class="row ">
+			<div class="column large-6 ">
+				<div class="contenedor-iconos-social">
+					<span ><i class="fi-social-facebook icono-social"></i><br></span>	
+					<span  ><i class="fi-social-vimeo icono-social"></i><br></span>
+					<span ><i class="fi-social-youtube icono-social"></i></span>	
 				</div>
+			</div>		
+		</div>
+	</div>
+	
+	<! CONTENIDO DE LOS ITEMES DEL MENU>
+	
+	<div class="column large-3 align-self-top contenedor-contenido-menu">
+		<div class="row">
+				<div class="column large-12"  id="qs">		
+				<i class="fi-x"></i>		
+					<h3 >Quienes somos</h3>
+							<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.
+							</p>					
+				</div>	
+					
+				<div class="column large-12" id="lineas">
+				<i class="fi-x"></i>	
+					<div class="row">
+						<div class="column large-3">
+							<div class="contenedor-imagen-linea">
+								<img src="imagenes/earthmapDia.jpg" alt="">					
+							</div>
+						</div>
+						<div class="column large-9">
+							<div class="contenedor-descripcion-linea">
+								<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>					
+							</div>
+						</div>				
+					</div>
+					<div class="row">
+						<div class="column large-3">
+							<div class="contenedor-imagen-linea">
+								<img src="imagenes/lensflare0.png" alt="">					
+							</div>
+						</div>
+						<div class="column large-9">
+							<div class="contenedor-descripcion-linea">
+								<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>					
+							</div>
+						</div>				
+					</div>
+					<div class="row">
+						<div class="column large-3">
+							<div class="contenedor-imagen-linea">
+								<img src="imagenes/tierra.jpg" alt="">					
+							</div>
+						</div>
+						<div class="column large-9">
+							<div class="contenedor-descripcion-linea">
+								<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>					
+							</div>
+						</div>				
+					</div>				
+				</div>
+				
+				<div class="column large-12" id="contacto">
+				<i class="fi-x"></i>	
+					<form>
+						<label>Nombre</label>
+						<input type="text">
+						<label>Correo</label>
+						<input type="text">		
+						<label>Mensaje</label>
+						<input type="text">	
+						<button>Enviar</button>	
+					</form>			
+				</div>
+				
+				<div class="column large-12" id="acercade">
+				<i class="fi-x"></i>	
+					<h3>Acerca de</h3>
+					<p class="texto-contenido">Para el desarrollo de esta interfaz se ha utilizado la libreria abierta para uso con WebGL, THREE.JS creada por xxxxxxxxxx. </p>
+					<p class="texto-contenido">La tipografía utilizada corresponde a JURA Lights creada por 	Daniel Johnson con licencia SIL Open Font License, Version 1.1.</p>
 				</div>
 			</div>		
 		</div>	
 	</div>
-</div>
-<div class="expanded row align-bottom contenedor-iconos">
-	<div class="column large-1">
-		<div class="row ">
-			<div class="column large-6">
-				<div class="contenedor-iconos-social">
-					<span class="icono-social"><i class="fi-social-facebook"></i></span>	
-					<span  class="icono-social"><i class="fi-social-vimeo"></i></span>
-					<span  class="icono-social"><i class="fi-social-youtube"></i></span>	
-				</div>
-			</div>
-		</div>	
-	</div>
-	<div class="column large-4 contenedor-contenido-menu">
-		<div class="contenedor-contenido-menu">
-			<div id="qs">
-				<h3>Quienes somos</h3>
-				<p>Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.
-</p>			
-			</div>
-			<div id="lineas">
-				<div class="contenedor-linea">
-					<div class="contenedor-imagen-linea">
-						<img src="imagenes/earthmapDia.jpg" alt="">					
-					</div>
-					<div class="contenedor-descripcion-linea">
-						<p>Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>					
-					</div>
-				</div>
-				<div class="contenedor-linea">
-					<div class="contenedor-imagen-linea">
-						<img src="imagenes/earthmapDia.jpg" alt="">
-					</div>
-					<div class="contenedor-descripcion-linea">
-						<p>Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>
-					</div>
-				</div>
-				<div class="contenedor-linea">
-					<div class="contenedor-imagen-linea">
-						<img src="imagenes/earthmapDia.jpg" alt="">
-					</div>
-					<div class="contenedor-descripcion-linea">
-						<p>Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>
-					</div>
-				</div>
-			</div>
-			<div id="contacto">
-				<form>
-					<label>Nombre</label>
-					<input type="text">
-					<label>Correo</label>
-					<input type="text">		
-					<label>Mensaje</label>
-					<input type="text">	
-					<button>Enviar</button>	
-				</form>			
-			</div>
-			<div id="acercade">
-				<p>Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>
-			</div>
-		</div>
-	</div>
-	<div class="column large-7" id="contenedorWebGL">
-		
 	</div>
 </div>
+
 	
   <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="js/cosmosEtnika.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
   
 </body>
 </html>
