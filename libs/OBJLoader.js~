@@ -17,7 +17,7 @@ THREE.OBJLoader.prototype = {
 		var scope = this;
 
 		var loader = new THREE.FileLoader( scope.manager );
-		//loader.setPath( '' );
+		loader.setPath( '' );
 		loader.load( url, function ( text ) {
 
 			onLoad( scope.parse( text ) );

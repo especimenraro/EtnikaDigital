@@ -43,15 +43,38 @@ width: 100%;
 .contenedor-iconos-social {
 height: 220px;
 width: 100%;
-background-color: rgba(255,255,255,0.6);
+
 border-radius: 5px;
 }
 .icono-social {
 font-size: 50px;
-background-color: white;
+color: rgba(255,255,255,0.4);
+
 }
 .contenedor-contenido-menu {
+display: none;
 
+}
+.contenedor-media {
+display: none;
+background-color: rgba(255,255,255,0.1);
+overflow-x: hidden;
+}
+.texto-credito {
+font-family: etnika;
+font-size: 18px;
+color: white;
+}
+h5 {
+font-family: etnika;
+color: white;
+}
+h2 {
+font-family: etnika;
+color: white;
+}
+.contenedor-texto-credito {
+overflow-y: scroll;
 
 }
 #qs {
@@ -73,11 +96,19 @@ display: none;
 color: white;
 }
 
+.video {
+width: 100%;
+}
 
-
-
-
-
+#titulo-credito {
+display: none;
+}
+#autor-credito {
+display: none;
+}
+#descripcion-credito {
+display: none;
+}
 
 
 

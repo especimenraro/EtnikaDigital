@@ -307,7 +307,7 @@
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   text-decoration: inherit;
-  
+  color: rgba(255,255,255,0.4);
 }
 
 .fi-address-book:before { content: "\f100"; }

@@ -62,11 +62,11 @@
 	
 	<div class="column large-1 align-self-bottom">
 		<div class="row ">
-			<div class="column large-6 ">
+			<div class="column large-6 align-self-bottom ">
 				<div class="contenedor-iconos-social">
-					<span ><i class="fi-social-facebook icono-social"></i><br></span>	
-					<span  ><i class="fi-social-vimeo icono-social"></i><br></span>
-					<span ><i class="fi-social-youtube icono-social"></i></span>	
+					<i class="fi-social-facebook icono-social"></i><br>
+					<i class="fi-social-vimeo icono-social"></i><br>
+					<i class="fi-social-youtube icono-social"></i>
 				</div>
 			</div>		
 		</div>
@@ -78,8 +78,8 @@
 		<div class="row">
 				<div class="column large-12"  id="qs">		
 				<i class="fi-x"></i>		
-					<h3 >Quienes somos</h3>
-							<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.
+					<h3 >Etnika Transmedia</h3>
+							<p class="texto-contenido">Etnika transmedia, es una plataforma web que explora el encuentro entre la educación, la cultura, las ciencias y el arte, por medio de las tecnologías digitales, semejando a un cosmos, donde los elementos que componen el espacio de la galaxia  interactúan y se retroalimenta constantemente de sus saberes.
 							</p>					
 				</div>	
 					
@@ -93,7 +93,8 @@
 						</div>
 						<div class="column large-9">
 							<div class="contenedor-descripcion-linea">
-								<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>					
+								<h3>CULTURA Y PATRIMONIO</h3>
+								<p class="texto-contenido"><strong>La cultura responde a las costumbres y hábitos adquiridos por poblaciones humanas que trascienden durante el tiempo y que comunican sus historia, dejando plasmada las huellas que se expresan en su patrimonio material e inmaterial.</strong> </p>					
 							</div>
 						</div>				
 					</div>
@@ -105,7 +106,10 @@
 						</div>
 						<div class="column large-9">
 							<div class="contenedor-descripcion-linea">
-								<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>					
+								<h3>EDUCACION</h3>
+								<p class="texto-contenido"><strong>Ante los cambios en la educación, las tecnologías digitales nos abren nuevos caminos para recorrer los actuales procesos de aprendizaje y enseñanzas. 
+Hoy parte del conocimiento de las ciencias y las artes, pueden ser más accesibles navegando por internet, despertando la motivación por explorar nuevos saberes.
+Hoy el ser humano tiene la posibilidad de autoformarse y buscar las temáticas de su propio interés, compartir sus conocimientos y experiencias a través de la navegación por internet.</strong></p>					
 							</div>
 						</div>				
 					</div>
@@ -117,7 +121,10 @@
 						</div>
 						<div class="column large-9">
 							<div class="contenedor-descripcion-linea">
-								<p class="texto-contenido">Lorem ipsum dolor sit amet, consecteteur adipiscing elit vel nibh parturient mauris. Augue parturient euismod nisl et quis metus. Quis est dis. Est, ligula tristique penatibus vestibulum. Vitae ut. Donec. Neque in vulputate a, dignissim. Eros risus ut turpis. Lorem sollicitudin porta et platea curabitur ac, fermentum a lacus. Nisi convallis per sagittis gravida, habitasse ligula facilisi parturient. Mi sagittis sapien, quis aenean inceptos sagittis aptent eleifend. Blandit. Ac, fusce eleifend penatibus, risus dolor.</p>					
+								<h3>TECNOLOGIA</h3>
+								<p class="texto-contenido"><strong>La relación del ser humano con las tecnologías digitales, presentan nuevos desafíos, donde debemos poner atención para ser un buen uso de estas, aportando a la creatividad y comunicación de los saberes, en respuesta de las aceleradas transformaciones de la modernidad.
+Las tecnologías digitales, han cambiado el escenario del territorio físico, al espacio virtual de la red,  donde conviven diversas comunidades que también poseen de sus propios lenguajes y símbolos de comunicación, provocando el fenómeno de las ciberculturas y el ciberespacio.</strong>
+								</p>					
 							</div>
 						</div>				
 					</div>				
@@ -144,6 +151,28 @@
 				</div>
 			</div>		
 		</div>	
+	<div class="column large-11 align-self-center contenedor-media">
+		<div class="expanded row">
+			<div class="column large-4 align-self-left contenedor-texto-credito">
+			<div>
+			<p class="texto-credito"><i class="fi-x"></i>	</p>
+						
+			</div>
+				<p class="texto-credito" id="titulo-credito">
+				</p>
+				<p class="texto-credito" id="autor-credito">
+				</p>
+				<p class="texto-credito" id="descripcion-credito">
+				</p>
+			</div>
+			<div class="column large-8">
+			
+				<iframe class="media video" src="" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+			</div>
+			
+		</div>
+	</div>	 
 	</div>
 	</div>
 </div>
