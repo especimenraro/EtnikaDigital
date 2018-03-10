@@ -221,9 +221,9 @@ function init() {
 
 				scene.children[9].rotation.y = tsat * 2 * Math.PI
 
-				scene.children[10].position.copy(scene.children[9].position)
+				//scene.children[10].position.copy(scene.children[9].position)
 
-				scene.children[10].rotation.copy(scene.children[9].rotation)
+				//scene.children[10].rotation.copy(scene.children[9].rotation)
 
 			} // FIN ROTA SATELITE
 
@@ -269,11 +269,11 @@ function init() {
 
 				// AGREGA SATELITE
 
-				var sateliteLoader = new THREE.OBJLoader()
+				var sateliteLoader = new THREE.GLTFLoader()
 
-				sateliteLoader.load('./modelos/Pioneer.obj', function(object) {
+				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
 
-						object.name = 'satelite'
+						/*object.name = 'satelite'
 
 						object.scale.x = 1
 
@@ -283,9 +283,9 @@ function init() {
 
 						object.castShadow = true
 
-						object.receiveShadow = true
+						object.receiveShadow = true*/
 
-						sceneTecnologia.add(object)
+						sceneTecnologia.add(object.scene)
 
 						sateliteDone = true
 
@@ -477,11 +477,11 @@ function init() {
 
 				// AGREGA SATELITE
 
-				var sateliteLoader = new THREE.OBJLoader()
+				var sateliteLoader = new THREE.GLTFLoader()
 
-				sateliteLoader.load('./modelos/Pioneer.obj', function(object) {
+				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
 
-						object.scale.x = 3
+						/*object.scale.x = 3
 
 						object.scale.y = 3
 
@@ -493,9 +493,9 @@ function init() {
 
 						object.castShadow = true
 
-						object.receiveShadow = true
+						object.receiveShadow = true */
 
-						scene.add(object)
+						scene.add(object.scene)
 
 						sateliteDone = true
 

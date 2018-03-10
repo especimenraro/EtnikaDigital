@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width,user-scalable=no">
   <title>Etnika Multimedial</title>
   <link rel="stylesheet" href="css/jquery-ui.min.css">
-  	<link rel="stylesheet" href="css/foundation.css">
+  	<link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
     <link rel="stylesheet" href="css/app.css">
-    <!link rel="stylesheet" href="css/estilos.css">
-   <script type="text/javascript" src="./libs/three.js"></script>
+    <script type="text/javascript" src="./libs/three.js"></script>
    <script type="text/javascript" src="./libs/stats.min.js"></script>
    <script type="text/javascript" src="./libs/OrbitControls.js"></script>
-   <script type="text/javascript" src="./libs/glTFLoader.js"></script>
+   <!script type="text/javascript" src="./libs/glTFLoader.js"></script>
    <script type="text/javascript" src="./libs/glTF-parser.js"></script>
     <script type="text/javascript" src="./libs/glTFLoaderUtils.js"></script>
      <script type="text/javascript" src="./libs/OBJLoader.js"></script>
