@@ -15,6 +15,7 @@
    <script type="text/javascript" src="./libs/glTFLoader.js"></script>
    <script type="text/javascript" src="./libs/glTF-parser.js"></script>
     <script type="text/javascript" src="./libs/glTFLoaderUtils.js"></script>
+     <script type="text/javascript" src="./libs/OBJLoader.js"></script>
    
 
 </head>
@@ -178,7 +179,7 @@ Las tecnologías digitales, han cambiado el escenario del territorio físico, al
 </div>
 
 	
-  <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
   <script type="text/javascript" src="js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="js/cosmosEtnika.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
