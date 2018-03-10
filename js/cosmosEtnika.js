@@ -221,9 +221,9 @@ function init() {
 
 				scene.children[9].rotation.y = tsat * 2 * Math.PI
 
-				//scene.children[10].position.copy(scene.children[9].position)
+				scene.children[10].position.copy(scene.children[9].position)
 
-				//scene.children[10].rotation.copy(scene.children[9].rotation)
+				scene.children[10].rotation.copy(scene.children[9].rotation)
 
 			} // FIN ROTA SATELITE
 
@@ -272,19 +272,13 @@ function init() {
 				var sateliteLoader = new THREE.GLTFLoader()
 
 				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
-
-						/*object.name = 'satelite'
-
-						object.scale.x = 1
-
-						object.scale.y = 1
-
-						object.scale.z = 1
-
-						object.castShadow = true
-
-						object.receiveShadow = true*/
-
+						
+						object.scene.scale.x = 3
+						
+						object.scene.scale.y = 3
+						
+						object.scene.scale.z = 3
+						
 						sceneTecnologia.add(object.scene)
 
 						sateliteDone = true
@@ -481,25 +475,11 @@ function init() {
 
 				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
 
-						/*object.scale.x = 3
-
-						object.scale.y = 3
-
-						object.scale.z = 3
-
-						object.position.x = 20
-
-						object.rotation.y = Math.PI / 2
-
-						object.castShadow = true
-
-						object.receiveShadow = true */
-
 						scene.add(object.scene)
 
 						sateliteDone = true
 
-						var sateliteGeometry = new THREE.OctahedronGeometry(1.5, 0),
+						var sateliteGeometry = new THREE.OctahedronGeometry(1, 0),
 
 							sateliteTexture = new THREE.TextureLoader().load('./modelos/texture/foil_gold_ramp.png'),
 
@@ -517,7 +497,7 @@ function init() {
 
 						satelite.receiveShadow = true
 
-						satelite.position.copy(object.position)
+						satelite.position.copy(object.scene.position)
 
 						scene.add(satelite)
 
@@ -555,9 +535,10 @@ function init() {
 
 					textureEarth = new THREE.TextureLoader().load('./imagenes/tierra.jpg'),
 
-					sphereMaterial = new THREE.MeshLambertMaterial({
-						map: textureEarth
-					})
+					sphereMaterial = new THREE.MeshLambertMaterial(
+					
+					{		map: textureEarth	}
+					)
 
 				var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
 

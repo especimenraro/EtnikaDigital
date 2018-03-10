@@ -481,25 +481,11 @@ function init() {
 
 				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
 
-						/*object.scale.x = 3
-
-						object.scale.y = 3
-
-						object.scale.z = 3
-
-						object.position.x = 20
-
-						object.rotation.y = Math.PI / 2
-
-						object.castShadow = true
-
-						object.receiveShadow = true */
-
 						scene.add(object.scene)
 
 						sateliteDone = true
 
-						var sateliteGeometry = new THREE.OctahedronGeometry(1.5, 0),
+						var sateliteGeometry = new THREE.OctahedronGeometry(1, 0),
 
 							sateliteTexture = new THREE.TextureLoader().load('./modelos/texture/foil_gold_ramp.png'),
 
@@ -517,7 +503,7 @@ function init() {
 
 						satelite.receiveShadow = true
 
-						satelite.position.copy(object.position)
+						satelite.position.copy(object.scene.position)
 
 						scene.add(satelite)
 
@@ -555,9 +541,10 @@ function init() {
 
 					textureEarth = new THREE.TextureLoader().load('./imagenes/tierra.jpg'),
 
-					sphereMaterial = new THREE.MeshLambertMaterial({
-						map: textureEarth
-					})
+					sphereMaterial = new THREE.MeshLambertMaterial(
+					
+					{		map: textureEarth	}
+					)
 
 				var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
 
