@@ -7,6 +7,7 @@ var controlPanel = {
 	titulos: [],
 	urls: [],
 	cantidadResultados: 0,
+	busquedaListo: false,
 	init: function () {
 		
 					$('#respuesta').hide()
@@ -77,6 +78,7 @@ var controlPanel = {
 		controlPanel.titulos = []	
 		controlPanel.imagenes = []	
 		controlPanel.urls = []	
+		controlPanel.busquedaListo = false
 		controlPanel.creaBusqueda()
 		controlPanel.buscar()
 	}, // FIN LIMPIA
@@ -119,40 +121,26 @@ var controlPanel = {
 	  
 	}, // FIN BUSCAR
 	obtieneObjetos(objetos) {
-		
-		for (i=0;i<objetos.length-1 || i<10;i++) {
+		if (objetos) {
+			for (i=0;i<objetos.length-1 || i<10;i++) {
 			controlPanel.titulos.push(objetos[i].childNodes[0].innerText)
 			controlPanel.urls.push(objetos[i].childNodes[0].childNodes[0].children[0].href)	
 			controlPanel.snippets.push(objetos[i].childNodes[2].childNodes[0].childNodes[0].childNodes[1].innerText)
 			if (objetos[i].childNodes[2].childNodes[0].childNodes[0].childNodes[0].childNodes[0]) {
 			controlPanel.imagenes.push(objetos[i].childNodes[2].childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].src)	
 			} else {
-				controlPanel.imagenes.push('../imagen/fondo_panel_categorias.png')
+				controlPanel.imagenes.push('./imagenes/logo.png')
 			}
 			
 		}
-	
-	}, // FIN OBTIENE OBJETOS
-	obtieneSnippets(snippets) {
-	for (i=0;i<snippets.length-1;i++) {
-		controlPanel.snippets.push(snippets[i].innerText)	
-	}
+		controlPanel.busquedaListo = true
+		} // FIN IF
+		else {
+		controlPanel.busquedaListo = false
+		}
 		
-	},
-	
-	obtieneImagenes(imagenes) {
-	for (i=0;i<imagenes.length-1;i++) {
-		controlPanel.imagenes.push(imagenes[i].src)	
-	}
-	},
-	
-	obtieneTitulos(titulos) {
-	for (i=0;i<titulos.length-1;i++) {
-		controlPanel.titulos.push(titulos[i].innerText)
-		controlPanel.urls.push(titulos[i].href)		
-	}
-	},
-	
+	} // FIN OBTIENE OBJETOS
+
 } // FIN CONTROL PANEL
 
 

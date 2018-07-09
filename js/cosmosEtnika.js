@@ -1,283 +1,159 @@
-var googleBusqueda = {
-	init: function () {
-																					
-													var cx = '010103968636640793823:guwxrblpljo';
-												    var gcse = document.createElement('script');
-												    gcse.type = 'text/javascript';
-												    gcse.async = true;
-												    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx ;
-												    var s = document.getElementsByTagName('script')[0];
-												    s.parentNode.insertBefore(gcse, s);
-												    controlPanel.init()
-	
-	}
-}
-
-
-var myCallback = function() {
-  if (document.readyState == 'complete') {
-    // Document is ready when CSE element is initialized.
-    // Render an element with both search box and search results in div with id 'test'.
-    google.search.cse.element.render(
-        {
-          div: "respuesta",
-          tag: 'searchresults-only',
-          gname: 'resultados'
-         });
-         $('#botonBuscar').show()
-         console.log('Llego la respuesta desde document.ready')
-  } else {
-    
-    google.setOnLoadCallback(function() {
-       // Render an element with both search box and search results in div with id 'test'.
-        console.log('Llego la respuesta desde setOnLoad')
-        google.search.cse.element.render({
-             div: "respuesta",
-          tag: 'searchresults-only',
-          gname: 'resultados'
-            });
-             $('#botonBuscar').show()
-  })
-};
-}
-
-
-$(function() {
-
-		
-		window.__gcse = {
-																parsetags: 'explicit',
-															  callback: myCallback
-														};
-		googleBusqueda.init()
-		cosmos.init()
-
-	}) // FIN DOCUMENT.READY
-	
-
 var cosmos = {
+	
+		scene: '',
+		
+		camera: '',
+		
+		renderer: '',
+		
+		orbitControls: '',
+		
+		clock: '',
+		
+		raycaster: '',
+		
+		tsat: '',
+		
+		mouse: '',
+		
+		punterox:'',
+		
+		punteroy:'',
+		
+		clickPos: '',
 	
 		init: function () {
 
-		window.addEventListener('click', onMouseClick, false)
+		window.addEventListener('click',cosmos.onMouseClick, false)
 
-		window.addEventListener('mousemove', onMouseMove, false)
+		window.addEventListener('mousemove', cosmos.onMouseMove, false)
 		
-		var introTime = false
-		
-		var introTimeDone = false
-		
-		var ocultarIntroTimeDone = false
+		cosmos.tsat = 0
 
-		var tsat = 0
+		cosmos.mouse = new THREE.Vector2()
 
-		var sateliteDone = false
+		cosmos.clickPos = new THREE.Vector2()
 
-		var tcomet = 0
+		cosmos.scene = new THREE.Scene()
 
-		var mediaCulturaSnap = [
-			'./imagenes/vlcsnap00.png',
-			'./imagenes/vlcsnap01.png',
-			'./imagenes/vlcsnap02.png',
-			'./imagenes/vlcsnap03.png',
-			'./imagenes/vlcsnap04.png',
-			'./imagenes/vlcsnap05.png',
-			'./imagenes/vlcsnap06.png',
-			'./imagenes/vlcsnap07.png',
-			'./imagenes/vlcsnap08.png'
-		]
+		cosmos.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 10, 1000)
 
-		var mediaCultura = [{
-			url: 'https://player.vimeo.com/video/213932596',
-			titulo: 'Guitarras y Voces en Trance: Cantores de Aculeo (Documental completo)',
-			autor: 'Guión y Dirección: Raúl Domenech.<br> Producción: Fabiola Videla',
-			descripcion: 'En Chile, comuna de Paine, específicamente en la localidad de Aculeo, se conservan tradiciones evangelizadoras que datan desde la época colonial. En estas tierras, se fusionan lo pagano con lo sagrado, por medio de relatos que trascienden en el canto a lo humano y lo divino.'
-		}, {
-			url: 'https://player.vimeo.com/video/155620151',
-			titulo: '<h3>Nütram Lafken Mapu (Trailer)</h3>',
-			autor: 'Realización Audiovisual:RaúlDomenech.<br>Producción: Fernando Vasquez.<br> Registro Sonoro: Victor Moris.<br> Asistente Producción: Fabiola Videla',
-			descripcion: '<h5>Extracto del cortometraje documental Nütram Lafken Mapu.	El Nütram es el arte de la conversación en la que una persona mayor habla de su vida, de su cultura, de la historia de su pueblo; es una conversación siempre poética, no sólo porque es profunda, sino porque apela también a la memoria. Somos presente porque somos pasado y sólo por ello somos futuro, dice Elicura Chihuailaf - 	Por medio de la música, la poesía y la historia oral, el peñi Vicente Huenupil Huenchuman, nos expresa parte de la tradición del Lafkenmapu en el sector de Cerro Negro, Tirua, Región del Bio-Bio.</h5>'
-		}, {
-			url: 'https://player.vimeo.com/video/126440099',
-			titulo: 'A la mano de Dios (Patrimonio Urbano)',
-			autor: 'Realización: Raúl Domenech y Marcia Egert',
-			descripcion: 'La indiferencia del ciudadano en Santiago de Chile, sumada a la despreocupación de la institucionalidad encargada de proteger y/o restaurar el patrimonio arquitectónico, ha permitido que las edificaciones de valor patrimonial del casco histórico de Santiago se hayan deteriorado en forma progresiva. Este proyecto centra la mirada en dos iglesias católicas que podemos considerar claves en términos patrimoniales, más allá de su significado religioso, siendo evidente su importancia histórica, singularidad arquitectónica y relevancia en términos de hito urbano.'
-		}, {
-			url: 'https://player.vimeo.com/video/123357961',
-			titulo: 'Fiesta de los Faroles (Santiago de Chile 2015)',
-			autor: 'Realización: Raúl Domenech',
-			descripcion: 'Cierre de las celebraciones del Año Nuevo Chino a traves de un espectáculo con danzas, tambores e instrumentos Chinos en conmemoración a la fiesta de los faroles.'
-		}, {
-			url: 'https://player.vimeo.com/video/141494308',
-			titulo: 'Guitarra y Voces en Trance (Trailer)',
-			autor: 'Guión y Dirección: Raúl Domenech,<br> Producción: Fabiola Videla',
-			descripcion: 'En Chile, comuna de Paine, específicamente en la localidad de Aculeo, se conservan tradiciones evangelizadoras que datan desde la época colonial. En estas tierras, se fusionan lo pagano con lo sagrado, por medio de relatos que trascienden en el canto a lo humano y lo divino.'
-		}, {
-			url: 'https://player.vimeo.com/video/63860663',
-			titulo: 'Aguila Sur hace memoria para contar su historia',
-			autor: 'Realización: Raúl Domenech y Frank Suarez',
-			descripcion: 'Trabajo de rescate patrimonial, que da cuenta del testimonio histórico de los habitantes de la localidad de Águila Sur.'
-		}, {
-			url: 'https://player.vimeo.com/video/62705702',
-			titulo: 'Patrimonio de lo sagrado y popular en las fiestas religiosas de Paine: “La Virgen del cerro”',
-			autor: 'Realización: Raúl Domenech y Frank Suarez',
-			descripcion: 'Emplazada a 1.700 mts de altura en la cordillera de Angostura de Paine, se encuentra "La Virgen del Cerro", imagen religiosa que convoca todos los años el peregrinaje de cientos de fieles hasta este lugar casi inaccesible. Trabajo realizado el año 2011 con el objetivo de registrar el patrimonio inmaterial de la zona, dando cuenta de los relatos de Fe por parte de arrieros, agricultores y vecinos de las localidades cercanas. La procesión se efectúa todos los años el día 8 de Diciembre, que corresponde a la ascensión de la inmaculada Concepción.'
-		}, {
-			url: 'https://player.vimeo.com/video/62254263',
-			titulo: 'HAY MANA',
-			autor: 'Realización: Raúl Domenech y Wladimir Rupcich',
-			descripcion: 'Producción documental acerca de los desafíos que plantea la sociedad moderna y la búsqueda por conservar la tradición y la cultura en la isla de Rapa Nui.'
-		}, {
-			url: 'https://player.vimeo.com/video/103714390',
-			titulo: 'Microdocumental: Ex menores Detenidos y Torturados durante la Dictadura Militar en Chile',
-			autor: 'Realización: Raúl Domenech ',
-			descripcion: 'Se estima que durante la dictadura militar en Chile (1973 - 1990), hubo al menos 6190 menores de edad víctimas de prisión política y tortura, de los que 2036 eran niños y niñas. De estos últimos 57 son detenidos desaparecidos y 91 fueron detenidos junto a sus padres.'
-		}]
-
-		var intro = [
-			
-									{
-										texto1: 'La Tierra es un planeta que sostiene una inmensa plataforma ecológica que concentra una diversidad de especies como los Seres Humanos, quienes se agrupan en poblaciones que interactúan en diferentes lenguajes y tradiciones.',
-										texto2:'La cultura al igual que la tierra, sostiene la diversidad humana.',
-										texto3:'Y con ella se enfrenta y se adapta a sus propios procesos de modernización.'			
-									} 	,
-					
-									{
-										texto1: 'El Sol es una estrella de la Vía Láctea, que ilumina sectores de la tierra y despierta la actividad de las especies.',
-										texto2:'Como la educación activa nuestra curiosidad por seguir explorando.',
-										texto3:'Gracias a la luz y el calor del conocimiento.'			
-									} 	,
-			 		
-									{
-										texto1: 'El Satélite orbita entre planetas y estrellas, observando el cosmos...',
-										texto2:'Como una extensión de nuestros imaginarios, por alcanzar el espacio exterior.',
-										texto3:'Al igual que las tecnologías digitales, las que extienden nuestro sistema nervioso por alcanzar los espacios virtuales.'			
-									}	,
-			
-									{
-										texto1: 'Los cometas transitan por el sistema solar, dejando sus destellos de hielo y polvo cósmico',
-										texto2:'plasmando su huella en el telar nocturno del cielo',
-										texto3:'como una obra de arte que despierta la imaginación y creatividad del observador.'			
-									}		
-		]
-		
-		var mouse = new THREE.Vector2()
-
-		var clickPos = new THREE.Vector2()
-
-		var scene = new THREE.Scene(),
-
-			camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 10, 1000),
-
-			renderer = new THREE.WebGLRenderer({
+		cosmos.renderer = new THREE.WebGLRenderer({
 				antialias: true,
 				alpha: true
 			})
 
 			
-		renderer.setClearColor(0x000000)
+		cosmos.renderer.setClearColor(0x000000)
 
-		renderer.setSize(window.innerWidth, window.innerHeight)
+		cosmos.renderer.setSize(window.innerWidth, window.innerHeight)
 
-		renderer.shadowMapEnabled = true
+		cosmos.renderer.shadowMapEnabled = true
 
 		// POSICIONA LA CAMARA
 
-		camera.position.x = 20
+		cosmos.camera.position.x = 20
 
-		camera.position.y = 30
+		cosmos.camera.position.y = 30
 
-		camera.position.z = 50
+		cosmos.camera.position.z = 50
 
-		camera.lookAt(scene.position)
+		cosmos.camera.lookAt(cosmos.scene.position)
 
 		//AGREGA CONTROL ORBITAL
 
-		var orbitControls = new THREE.OrbitControls(camera)
+		cosmos.orbitControls = new THREE.OrbitControls(cosmos.camera)
 
-		orbitControls.autoRotate = true
+		cosmos.orbitControls.autoRotate = true
 
-		orbitControls.autoRotateSpeed = 0.1
+		cosmos.orbitControls.autoRotateSpeed = 0.1
 
-		orbitControls.userZoom = false
+		cosmos.orbitControls.userZoom = false
 
-		var clock = new THREE.Clock();
+		cosmos.clock = new THREE.Clock();
 
-		creaCosmos()
+		cosmos.creaCosmos()
 
 		// AGREGA RAYCASTING PARA DETECTAR ELEMENTOS DENTRO DE LA ESCENA
 
-		var raycaster = new THREE.Raycaster();
+		cosmos.raycaster = new THREE.Raycaster();
 		
-		raycaster.far = 180
+		cosmos.raycaster.far = 180
 
-		document.getElementById('WebGL-output').appendChild(renderer.domElement)
+		document.getElementById('WebGL-output').appendChild(cosmos.renderer.domElement)
 		
-		renderScene()
+		cosmos.renderScene()
 
+		}, // FIN INIT 
 
-		function renderScene() {
+		renderScene: function () {
 
-				var delta = clock.getDelta()
+				var delta = cosmos.clock.getDelta()
 				
-				orbitControls.update(delta);
+				cosmos.orbitControls.update(delta);
 
 				// update the picking ray with the camera and mouse position
 
-				raycaster.setFromCamera(mouse, camera);
+				cosmos.raycaster.setFromCamera(cosmos.mouse, cosmos.camera);
 
-				var intersects = raycaster.intersectObjects(scene.children)
+				var intersects = cosmos.raycaster.intersectObjects(cosmos.scene.children)
 
-				detectaObjetos(intersects)
+				cosmos.detectaObjetos(intersects)
 
-				requestAnimationFrame(renderScene)
+				requestAnimationFrame(cosmos.renderScene)
 					
-					orbitControls.userZoom = false
+				cosmos.orbitControls.userZoom = false
 
-					renderer.render(scene, camera)
+				cosmos.renderer.render(cosmos.scene, cosmos.camera)
 					
-					rotaSatelite()
+				cosmos.rotaSatelite()
+				
+				if (controlPanel.busquedaListo) {
+					cosmos.creaGaleriaEsferica(1)				
+				}
 
-			} // FIN RENDERSCENE
+			}, // FIN RENDERSCENE
 
 
-		function rotaSatelite() {
+		rotaSatelite: function () {
 
 				var x, z, y
 
-				y = 10 * Math.sin(tsat * 2 * Math.PI)
+				y = 10 * Math.sin(cosmos.tsat * 2 * Math.PI)
 
-				x = 20 * Math.sin(tsat * 2 * Math.PI)
+				x = 20 * Math.sin(cosmos.tsat * 2 * Math.PI)
 
-				z = 20 * Math.cos(tsat * 2 * Math.PI)
+				z = 20 * Math.cos(cosmos.tsat * 2 * Math.PI)
 
-				if (tsat == 1) {
+				if (cosmos.tsat == 1) {
 
-					tsat = 0
+					cosmos.tsat = 0
 
 				} else {
 
-					tsat += 0.001
+					cosmos.tsat += 0.001
 
 				}
 
-				scene.children[6].position.x = x
+				cosmos.scene.children[6].position.x = x
 
-				scene.children[6].position.y = y
+				cosmos.scene.children[6].position.y = y
 
-				scene.children[6].position.z = z
+				cosmos.scene.children[6].position.z = z
 
-				scene.children[6].rotation.y = tsat * 2 * Math.PI
+				cosmos.scene.children[6].rotation.y = cosmos.tsat * 2 * Math.PI
 
 				//scene.children[9].position.copy(scene.children[8].position)
 
 				//scene.children[9].rotation.copy(scene.children[8].rotation)
 
-			} // FIN ROTA SATELITE
+			}, // FIN ROTA SATELITE
 
 
 			
-		function creaGaleriaEsferica(linea) {
+		creaGaleriaEsferica: function (linea) {
+			
+				controlPanel.busquedaListo = false
 
 				var distribucion = [1, 2, 4, 2, 1]
 
@@ -307,7 +183,13 @@ var cosmos = {
 
 						var plano = new THREE.Mesh(PlanoGeometry, PlanoMaterial)
 
-						plano.name = 'cultura0' + item
+						plano.name = 'resultadoBusqueda'
+												
+						plano.userData = { imagen: controlPanel.imagenes[item],
+																		  titulo: controlPanel.titulos[item],
+																		  url: controlPanel.urls[item],
+																		  snippet: controlPanel.snippets[item]
+																		  }
 
 						plano.castShadow = false
 
@@ -321,7 +203,7 @@ var cosmos = {
 
 						plano.position.z = radio * Math.cos(az) * Math.cos(h)
 						
-						scene.add(plano)
+						cosmos.scene.add(plano)
 						
 						az += 2 * Math.PI / distribucion[i]
 
@@ -333,9 +215,9 @@ var cosmos = {
 
 				} // FIN FOR
 
-			} // FIN CREA GALERIA ESFERICA
+			}, // FIN CREA GALERIA ESFERICA
 
-		function creaCosmos() {
+		creaCosmos: function () {
 
 				// AGREGA SATELITE
 
@@ -343,7 +225,7 @@ var cosmos = {
 				
 				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
 
-						scene.add(object.scene)
+						cosmos.scene.add(object.scene)
 
 						sateliteDone = true
 
@@ -404,7 +286,7 @@ var cosmos = {
 
 				sphere.rotation.y = Math.PI
 
-				scene.add(sphere)
+				cosmos.scene.add(sphere)
 
 
 				//AMBIENTE 
@@ -415,7 +297,7 @@ var cosmos = {
 
 				ambientLight.intensity = 0.5
 
-				scene.add(ambientLight)
+				cosmos.scene.add(ambientLight)
 
 				// AGREGA SOL
 
@@ -431,7 +313,7 @@ var cosmos = {
 
 				LuzSol.castShadow = true
 
-				scene.add(LuzSol)
+				cosmos.scene.add(LuzSol)
 
 				var textureFlare0 = new THREE.TextureLoader().load('./imagenes/lensflare0.png'),
 
@@ -453,7 +335,7 @@ var cosmos = {
 				
 				flare.name = 'flareSol'
 
-				scene.add(flare)
+				cosmos.scene.add(flare)
 
 				var solGeometry = new THREE.SphereGeometry(0.7, 40, 40),
 				
@@ -483,7 +365,7 @@ var cosmos = {
 
 				sol.position.z = -60
 
-				scene.add(sol)
+				cosmos.scene.add(sol)
 
 				// AGREGA LUZ PARA EL LADO OSCURO
 
@@ -501,7 +383,7 @@ var cosmos = {
 
 				luzOscura.castShadow = false
 
-				scene.add(luzOscura)
+				cosmos.scene.add(luzOscura)
 
 				// AGREGA CUBEMAP CON LA GALAXIA
 
@@ -552,64 +434,74 @@ var cosmos = {
 
 				//scene.add(skybox)
 				
-				scene.background = textureCube
+				cosmos.scene.background = textureCube
 				
-				console.log(scene.children)
+				console.log(cosmos.scene.children)
 
-			} // FIN CREA COSMOS
+			}, // FIN CREA COSMOS
 
-		function onMouseClick(event) {
+		onMouseClick: function (event) {
 
-				clickPos.x = (event.clientX / window.innerWidth) * 2 - 1
+				cosmos.clickPos.x = (event.clientX / window.innerWidth) * 2 - 1
 
-				clickPos.y = -(event.clientY / window.innerHeight) * 2 + 1
+				cosmos.clickPos.y = -(event.clientY / window.innerHeight) * 2 + 1
 
 				var clickRaytrace = new THREE.Raycaster()
 
-				clickRaytrace.setFromCamera(clickPos, camera)
+				clickRaytrace.setFromCamera(cosmos.clickPos, cosmos.camera)
 				
 			//	clickRaytrace.far = 150
 
-				var clickIntersects = clickRaytrace.intersectObjects(scene.children)
+				var clickIntersects = clickRaytrace.intersectObjects(cosmos.scene.children)
 
-				detectaClickObjetos(clickIntersects)
+				cosmos.detectaClickObjetos(clickIntersects)
 
-			} // FIN ON MOUSE CLICK
+			}, // FIN ON MOUSE CLICK
 
-		function onMouseMove(event) {
+		onMouseMove: function (event) {
 
-				mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+				cosmos.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
 
-				mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+				cosmos.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+				
+				cosmos.punterox = event.clientX
+				
+				cosmos.punteroy = event.clientY
 
-			} // FIN ON MOUSE MOVE
+			}, // FIN ON MOUSE MOVE
 
 
 
-		function detectaObjetos(intersects) {
+		detectaObjetos: function (intersects) {
 			
 				
 
 				if (intersects.length > 0) {
 					
 								
-					if (intersects[0].object.name == 'tierra') {
+					if (intersects[0].object.name == 'resultadoBusqueda' && $('#descriptor').css('display')=='none') {
+						
+						//$('#descriptor').css('top',cosmos.punteroy)
+						
+						//$('#descriptor').css('left',cosmos.punterox)
+						
+						$('#titulo-card').text(intersects[0].object.userData.titulo)
+						
+						$('#imagen-card').attr('src',  intersects[0].object.userData.imagen)
+						
+						$('#snippet').text(intersects[0].object.userData.snippet)
+						
+						$('#descriptor').show()
 
-					} else {
-
-					}
-
-					if (intersects[0].object.name == 'sol') {
-
-					} else {
-
-					}
-
+					}  // FIN IF 
 				} // FIN IF 
+				else {
+				$('#descriptor').hide()
+				}
 
-			} // FIN DETECTA OBJETOS
+			}, // FIN DETECTA OBJETOS
 
-		function detectaClickObjetos(clickIntersects) {
+		detectaClickObjetos: function (clickIntersects) {
 				
 				if (clickIntersects.length > 0) {
 					
@@ -635,11 +527,8 @@ var cosmos = {
 				}
 
 			} // FIN DETECTA CLICK OBJETOS
-			
-			
-						
-	} //FIN INIT
-
+				
+	
 } // FIN COSMOS
 
 

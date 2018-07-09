@@ -27,3 +27,18 @@ z-index: 111;
 .fi-x {
 cursor: pointer;
 }
+.contenedor-descripcion-busqueda {
+display: none;
+width: 350px;
+position: absolute;
+top: 0px;
+left: 0px;
+}
+
+
+
+
+
+
+
+
