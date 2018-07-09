@@ -1,0 +1,66 @@
+.icono-panel-control {
+font-size: 20px;
+padding-left: 10px;
+padding-right: 10px;
+
+}
+
+.contenedor-panel-busqueda {
+border: 1px solid black;
+background-image: url('../imagen/fondo_panel.png');
+background-clip: content-box;
+background-size: contain;
+background-repeat: space;
+height: 280px;
+}
+
+
+
+.contenedor-contenido {
+background-image: url('../imagen/fondo_panel_categorias.png');
+background-size: contain;
+background-repeat: space;
+height: 20vh;
+margin: 3px 3px;
+padding: 3px 3px;
+color: white;
+
+}
+  #receptor>.ui-selecting { color: #FECA40; }
+  #receptor>.ui-selected {color: red; }
+.ui-widget-content {
+	background-color:transparent;
+	border-color:transparent; 
+	color: white; 
+	}
+  
+  .basura {
+  	display: none;
+	color:white;  
+	font-size: 50px;
+  }
+  .lupa {
+  	display: none;
+color:white;  
+text-align: center;
+font-size: 50px;
+cursor: pointer;
+  }
+  
+ 
+.movible {
+text-align: center;
+margin-bottom: 0px;
+}
+  
+  .texto-contenido-tabs {
+color:white;  
+text-align: left;
+margin-bottom: 0px;
+font-size: 14px;
+  }
+  .x {
+  	text-align: right;
+  	margin-bottom: 0;
+  	color: white;
+  }

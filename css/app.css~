@@ -4,115 +4,26 @@ src:  url(../fonts/Jura-Light.otf);
 }
 .fondo {
 background-color: gray;
+background-image: url('../imagenes/fondo.png');
+background-position: center;
+background-repeat: space;
 overflow: hidden;
 }
-.contenedor_mapa {
+.contenedor-cosmos {
 position: absolute;
 top: 0px;
 left: 0px;
-z-index: -1;
+z-index: -111;
 }
 .contenedor-interfaz{
 z-index: 111;
 }
 
-.barra-menu {
-background-color: rgba(255,255,255,0);
-width: 100%;
-}
-.texto-menu {
-font-family: etnika;
-font-size: 18px;
-color: white;
-margin-left: 5px;
-margin-right: 5px;
-}
-.texto-contenido {
-font-family: etnika;
-font-size: 18px;
-color: white;
-margin-left: 5px;
-margin-right: 5px;
-}
-.contenedor-general{
 
-width: 100%;
-
-
-}
-.contenedor-iconos-social {
-height: 220px;
-width: 100%;
-
-border-radius: 5px;
-}
-.icono-social {
-font-size: 50px;
-color: rgba(255,255,255,0.4);
-
-}
-.contenedor-contenido-menu {
+#interfaz-tierra {
 display: none;
-
+z-index: 111;
 }
-.contenedor-media {
-display: none;
-background-color: rgba(255,255,255,0.1);
-overflow-x: hidden;
+.x {
+cursor: pointer;
 }
-.texto-credito {
-font-family: etnika;
-font-size: 18px;
-color: white;
-}
-h5 {
-font-family: etnika;
-color: white;
-}
-h2 {
-font-family: etnika;
-color: white;
-}
-.contenedor-texto-credito {
-overflow-y: scroll;
-
-}
-#qs {
-	display: none;
-color: white;
-}
-#lineas {
-display: none;
-color: white;
-overflow-y: scroll;
-}
-
-#contacto {
-display: none;
-color: white;
-}
-#acercade {
-display: none;
-color: white;
-}
-
-.video {
-width: 100%;
-}
-
-#titulo-credito {
-display: none;
-}
-#autor-credito {
-display: none;
-}
-#descripcion-credito {
-display: none;
-}
-
-
-
-
-
-
-

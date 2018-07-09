@@ -1,10 +1,6 @@
 $(function () {
 $('.contenedor-interfaz').css('height',window.innerHeight)
-var alturaContenido = window.innerHeight - document.getElementsByClassName('contenedor-menu')[0].clientHeight
-$('.contenedor-general').css('height',alturaContenido)
-$('#lineas').css('height',alturaContenido)
-$('.contenedor-media').css('height',alturaContenido)
-$('.contenedor-texto-credito').css('height',alturaContenido)
+
 $('.fi-x').click(function () {
 		$('.contenedor-contenido-menu').hide()
 		$('#lineas').hide()
@@ -13,6 +9,9 @@ $('.fi-x').click(function () {
 		$('#qs').hide()
 		$('.contenedor-media').hide()
 		$('.media').attr('src','')
+		$('#titulo-credito').hide()
+		$('#autor-credito').hide()
+		$('#descripcion-credito').hide()
 })
 $('#menu-qs').click(function () {
 		$('.contenedor-contenido-menu').show()

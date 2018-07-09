@@ -11,17 +11,15 @@
     <script type="text/javascript" src="./libs/three.js"></script>
    <script type="text/javascript" src="./libs/stats.min.js"></script>
    <script type="text/javascript" src="./libs/OrbitControls.js"></script>
-   <!script type="text/javascript" src="./libs/glTFLoader.js"></script>
+   <script type="text/javascript" src="./libs/glTFLoader.js"></script>
    <script type="text/javascript" src="./libs/glTF-parser.js"></script>
     <script type="text/javascript" src="./libs/glTFLoaderUtils.js"></script>
-     <script type="text/javascript" src="./libs/OBJLoader.js"></script>
-   
-
+     
 </head>
 <body class="fondo">
 
-<!div id="Stats-output"></div>
-<div id="WebGL-output" class="contenedor_mapa"></div>
+
+<div id="WebGL-output" class="contenedor-cosmos"></div>
 
 <! CONTENEDOR DE LA INTERFAZ HTML>
 
@@ -172,7 +170,25 @@ Las tecnologías digitales, han cambiado el escenario del territorio físico, al
 			</div>
 			
 		</div>
-	</div>	 
+	</div>
+	
+<div class="column large-11 align-self-center contenedor-cerrar-cosmos">
+	<i class="fi-x-circle cerrar-cosmos"></i>
+
+</div>	
+	
+<div class="column large-11 align-self-center contenedor-intro" >
+	<div>
+		<p class="texto-intro" id="texto-intro-1"></p>		
+	</div>
+	<div>
+		<p class="texto-intro" id="texto-intro-2"></p>
+	</div>
+	<div>
+		<p class="texto-intro" id="texto-intro-3"></p>		
+	</div>
+</div>	
+		 
 	</div>
 	</div>
 </div>

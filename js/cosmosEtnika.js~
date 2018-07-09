@@ -1,15 +1,71 @@
+var googleBusqueda = {
+	init: function () {
+																					
+													var cx = '010103968636640793823:guwxrblpljo';
+												    var gcse = document.createElement('script');
+												    gcse.type = 'text/javascript';
+												    gcse.async = true;
+												    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx ;
+												    var s = document.getElementsByTagName('script')[0];
+												    s.parentNode.insertBefore(gcse, s);
+												    controlPanel.init()
+	
+	}
+}
+
+
+var myCallback = function() {
+  if (document.readyState == 'complete') {
+    // Document is ready when CSE element is initialized.
+    // Render an element with both search box and search results in div with id 'test'.
+    google.search.cse.element.render(
+        {
+          div: "respuesta",
+          tag: 'searchresults-only',
+          gname: 'resultados'
+         });
+         $('#botonBuscar').show()
+         console.log('Llego la respuesta desde document.ready')
+  } else {
+    
+    google.setOnLoadCallback(function() {
+       // Render an element with both search box and search results in div with id 'test'.
+        console.log('Llego la respuesta desde setOnLoad')
+        google.search.cse.element.render({
+             div: "respuesta",
+          tag: 'searchresults-only',
+          gname: 'resultados'
+            });
+             $('#botonBuscar').show()
+  })
+};
+}
+
+
 $(function() {
 
+		
+		window.__gcse = {
+																parsetags: 'explicit',
+															  callback: myCallback
+														};
+		googleBusqueda.init()
 		init()
 
 	}) // FIN DOCUMENT.READY
-
+	
 
 function init() {
 
 		window.addEventListener('click', onMouseClick, false)
 
 		window.addEventListener('mousemove', onMouseMove, false)
+		
+		var introTime = false
+		
+		var introTimeDone = false
+		
+		var ocultarIntroTimeDone = false
 
 		var tsat = 0
 
@@ -76,33 +132,47 @@ function init() {
 			descripcion: 'Se estima que durante la dictadura militar en Chile (1973 - 1990), hubo al menos 6190 menores de edad víctimas de prisión política y tortura, de los que 2036 eran niños y niñas. De estos últimos 57 son detenidos desaparecidos y 91 fueron detenidos junto a sus padres.'
 		}]
 
+		var intro = [
+			
+									{
+										texto1: 'La Tierra es un planeta que sostiene una inmensa plataforma ecológica que concentra una diversidad de especies como los Seres Humanos, quienes se agrupan en poblaciones que interactúan en diferentes lenguajes y tradiciones.',
+										texto2:'La cultura al igual que la tierra, sostiene la diversidad humana.',
+										texto3:'Y con ella se enfrenta y se adapta a sus propios procesos de modernización.'			
+									} 	,
+					
+									{
+										texto1: 'El Sol es una estrella de la Vía Láctea, que ilumina sectores de la tierra y despierta la actividad de las especies.',
+										texto2:'Como la educación activa nuestra curiosidad por seguir explorando.',
+										texto3:'Gracias a la luz y el calor del conocimiento.'			
+									} 	,
+			 		
+									{
+										texto1: 'El Satélite orbita entre planetas y estrellas, observando el cosmos...',
+										texto2:'Como una extensión de nuestros imaginarios, por alcanzar el espacio exterior.',
+										texto3:'Al igual que las tecnologías digitales, las que extienden nuestro sistema nervioso por alcanzar los espacios virtuales.'			
+									}	,
+			
+									{
+										texto1: 'Los cometas transitan por el sistema solar, dejando sus destellos de hielo y polvo cósmico',
+										texto2:'plasmando su huella en el telar nocturno del cielo',
+										texto3:'como una obra de arte que despierta la imaginación y creatividad del observador.'			
+									}		
+		]
+		
 		var mouse = new THREE.Vector2()
 
 		var clickPos = new THREE.Vector2()
 
 		var scene = new THREE.Scene(),
 
-			sceneCultura = new THREE.Scene(),
-
-			sceneEducacion = new THREE.Scene(),
-
-			sceneTecnologia = new THREE.Scene(),
-
 			camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 10, 1000),
 
 			renderer = new THREE.WebGLRenderer({
 				antialias: true,
 				alpha: true
-			}),
+			})
 
-			sceneCulturaVisible = false,
-
-			sceneTecnologiaVisible = false,
-
-			sceneEducacionVisible = false,
-
-			sceneVisible = true
-
+			
 		renderer.setClearColor(0x000000)
 
 		renderer.setSize(window.innerWidth, window.innerHeight)
@@ -125,7 +195,7 @@ function init() {
 
 		orbitControls.autoRotate = true
 
-		orbitControls.autoRotateSpeed = 0.3
+		orbitControls.autoRotateSpeed = 0.1
 
 		orbitControls.userZoom = false
 
@@ -133,29 +203,21 @@ function init() {
 
 		creaCosmos()
 
-		creaCultura()
-
-		creaTecnologia()
-
 		// AGREGA RAYCASTING PARA DETECTAR ELEMENTOS DENTRO DE LA ESCENA
 
 		var raycaster = new THREE.Raycaster();
+		
+		raycaster.far = 180
 
 		document.getElementById('WebGL-output').appendChild(renderer.domElement)
-
+		
 		renderScene()
 
 
 		function renderScene() {
 
 				var delta = clock.getDelta()
-
-				if (sateliteDone) {
-					rotaSatelite()
-				}
-
-				rotaCometa()
-
+				
 				orbitControls.update(delta);
 
 				// update the picking ray with the camera and mouse position
@@ -167,28 +229,12 @@ function init() {
 				detectaObjetos(intersects)
 
 				requestAnimationFrame(renderScene)
-
-				if (sceneVisible) {
-
+					
 					orbitControls.userZoom = false
 
 					renderer.render(scene, camera)
-				}
-
-				if (sceneCulturaVisible) {
-
-					orbitControls.userZoom = true
-
-					renderer.render(sceneCultura, camera)
-
-				}
-
-				if (sceneTecnologiaVisible) {
-
-					orbitControls.userZoom = true;
-					renderer.render(sceneTecnologia, camera)
-
-				}
+					
+					rotaSatelite()
 
 			} // FIN RENDERSCENE
 
@@ -213,209 +259,25 @@ function init() {
 
 				}
 
-				scene.children[9].position.x = x
+				scene.children[6].position.x = x
 
-				scene.children[9].position.y = y
+				scene.children[6].position.y = y
 
-				scene.children[9].position.z = z
+				scene.children[6].position.z = z
 
-				scene.children[9].rotation.y = tsat * 2 * Math.PI
+				scene.children[6].rotation.y = tsat * 2 * Math.PI
 
-				scene.children[10].position.copy(scene.children[9].position)
+				//scene.children[9].position.copy(scene.children[8].position)
 
-				scene.children[10].rotation.copy(scene.children[9].rotation)
+				//scene.children[9].rotation.copy(scene.children[8].rotation)
 
 			} // FIN ROTA SATELITE
 
 
-		function rotaCometa() {
+			
+		function creaGaleriaEsferica(linea) {
 
-				var x, z, y, e, a, b, r
-
-				a = 164
-
-				b = 143
-
-				e = Math.sqrt(1 - ((b * b) / (a * a)))
-
-				r = (a * (1 - e * e)) / (1 + e * Math.cos(2 * tcomet * Math.PI))
-
-				y = 10 * Math.sin(tcomet * 2 * Math.PI)
-
-				x = r * Math.sin(tcomet * 2 * Math.PI)
-
-				z = r * Math.cos(tcomet * 2 * Math.PI)
-
-				if (tcomet == 1) {
-
-					tcomet = 0
-
-				} else {
-
-					tcomet += 0.001
-
-				}
-				scene.children[0].position.x = x
-
-				scene.children[0].position.y = 0
-
-				scene.children[0].position.z = z
-
-				scene.children[1].position.copy(scene.children[0].position)
-
-			} // FIN ROTA COMETA
-
-		function creaTecnologia() {
-
-				// AGREGA SATELITE
-
-				var sateliteLoader = new THREE.GLTFLoader()
-
-				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
-
-						/*object.name = 'satelite'
-
-						object.scale.x = 1
-
-						object.scale.y = 1
-
-						object.scale.z = 1
-
-						object.castShadow = true
-
-						object.receiveShadow = true*/
-
-						sceneTecnologia.add(object.scene)
-
-						sateliteDone = true
-
-					}) // FIN LOADER
-
-
-				//AMBIENTE 
-
-				var ambiColor = "#ffffff"
-
-				var ambientLight = new THREE.AmbientLight(ambiColor)
-
-				ambientLight.intensity = 0.8
-
-				sceneTecnologia.add(ambientLight)
-
-				// AGREGA LUZ ZENITAL
-
-				var LuzSol = new THREE.DirectionalLight(0xffffff)
-
-				LuzSol.position.x = 0
-
-				LuzSol.position.y = 30
-
-				LuzSol.position.z = 0
-
-				LuzSol.intensity = 1
-
-				LuzSol.castShadow = true
-
-				sceneTecnologia.add(LuzSol)
-
-				// AGREGA LUZ PARA EL LADO OSCURO
-
-				var luzOscura = new THREE.SpotLight(0xffffff)
-
-				luzOscura.position.x = 0
-
-				luzOscura.position.y = 0
-
-				luzOscura.position.z = 30
-
-				luzOscura.intensity = 2
-
-				luzOscura.castShadow = false
-
-				sceneTecnologia.add(luzOscura)
-
-				creaGaleriaEsferica()
-
-			} // FIN CREA TECNOLOGIA
-
-
-		function creaCultura() {
-
-				//AGREGA ESFERA TIERRA
-
-				var sphereGeometry = new THREE.SphereGeometry(5, 40, 40),
-
-					textureEarth = new THREE.TextureLoader().load('./imagenes/tierra.jpg'),
-
-					sphereMaterial = new THREE.MeshLambertMaterial({
-						map: textureEarth
-					}),
-
-					sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
-
-				sphere.name = 'tierraCultura'
-
-				sphere.castShadow = false
-
-				sphere.position.x = 0
-
-				sphere.position.y = 0
-
-				sphere.position.z = 0
-
-				sphere.rotation.y = Math.PI
-
-				sceneCultura.add(sphere)
-
-				//AMBIENTE 
-
-				var ambiColor = "#ffffff"
-
-				var ambientLight = new THREE.AmbientLight(ambiColor)
-
-				ambientLight.intensity = 0.8
-
-				sceneCultura.add(ambientLight)
-
-				// AGREGA LUZ LADO DIA
-
-				var LuzSol = new THREE.DirectionalLight(0xffffff)
-
-				LuzSol.position.x = -15
-
-				LuzSol.position.y = 0
-
-				LuzSol.position.z = -60
-
-				LuzSol.intensity = 2
-
-				LuzSol.castShadow = true
-
-				sceneCultura.add(LuzSol)
-
-				// AGREGA LUZ PARA EL LADO OSCURO
-
-				var luzOscura = new THREE.SpotLight(0xffffff)
-
-				luzOscura.position.x = 0
-
-				luzOscura.position.y = 0
-
-				luzOscura.position.z = 30
-
-				luzOscura.intensity = 2
-
-				luzOscura.castShadow = false
-
-				sceneCultura.add(luzOscura)
-
-				creaGaleriaEsferica()
-
-			} // FIN CREA CULTURA
-
-		function creaGaleriaEsferica() {
-
-				var distribucion = [1, 2, 3, 2, 1]
+				var distribucion = [1, 2, 4, 2, 1]
 
 				var h, az, radio, item
 
@@ -431,7 +293,7 @@ function init() {
 
 						var PlanoGeometry = new THREE.PlaneGeometry(8, 6, 10, 10)
 
-						var urlImagen = mediaCulturaSnap[item]
+						var urlImagen = controlPanel.imagenes[item]
 
 						var textureEarth = new THREE.TextureLoader().load(urlImagen)
 
@@ -456,11 +318,9 @@ function init() {
 						plano.position.y = radio * Math.sin(h)
 
 						plano.position.z = radio * Math.cos(az) * Math.cos(h)
-
-						sceneCultura.add(plano)
-
-						sceneTecnologia.add(plano)
-
+						
+						scene.add(plano)
+						
 						az += 2 * Math.PI / distribucion[i]
 
 						item += 1
@@ -478,14 +338,14 @@ function init() {
 				// AGREGA SATELITE
 
 				var sateliteLoader = new THREE.GLTFLoader()
-
+				
 				sateliteLoader.load('./modelos/gltf/Pioneer.gltf', function(object) {
 
 						scene.add(object.scene)
 
 						sateliteDone = true
 
-						var sateliteGeometry = new THREE.OctahedronGeometry(1, 0),
+						var sateliteGeometry = new THREE.OctahedronGeometry(2, 0),
 
 							sateliteTexture = new THREE.TextureLoader().load('./modelos/texture/foil_gold_ramp.png'),
 
@@ -494,8 +354,12 @@ function init() {
 							})
 
 						var satelite = new THREE.Mesh(sateliteGeometry, sateliteMaterial)
-
+						
 						satelite.name = 'satelite'
+						
+						satelite.material.transparent = false
+						
+						satelite.material.opacity = 0.0
 
 						satelite.rotation.x = Math.PI / 2
 
@@ -505,35 +369,13 @@ function init() {
 
 						satelite.position.copy(object.scene.position)
 
-						scene.add(satelite)
+						//scene.add(satelite)
 
 					}) // FIN LOADER
 
 				// AGREGA COMETA
 
-				var cometaGeometry = new THREE.OctahedronGeometry(1, 1),
-
-					cometaMaterial = new THREE.MeshLambertMaterial({
-						color: 0xffffff
-					})
-
-				var cometa = new THREE.Mesh(cometaGeometry, cometaMaterial)
-
-				cometa.name = 'cometa'
-
-				cometa.position.x = -20
-
-				scene.add(cometa)
-
-				var textureFlareCometa = new THREE.TextureLoader().load('./imagenes/cometa.png'),
-
-					flareColorCometa = new THREE.Color(0xffffff),
-
-					flareCometa = new THREE.LensFlare(textureFlareCometa, 70, 0.0, THREE.AdditiveBlending, flareColorCometa)
-
-				flareCometa.position.copy(cometa.position)
-
-				scene.add(flareCometa)
+				
 
 				//AGREGA ESFERA TIERRA
 
@@ -575,9 +417,9 @@ function init() {
 
 				// AGREGA SOL
 
-				var LuzSol = new THREE.DirectionalLight(0xffffff)
+				var LuzSol = new THREE.PointLight(0xffffff)
 
-				LuzSol.position.x = -15
+				LuzSol.position.x = -19
 
 				LuzSol.position.y = 0
 
@@ -606,13 +448,17 @@ function init() {
 				flare.add(textureFlare2, 100, 0.35, THREE.AdditiveBlending)
 
 				flare.position.copy(LuzSol.position)
+				
+				flare.name = 'flareSol'
 
 				scene.add(flare)
 
 				var solGeometry = new THREE.SphereGeometry(0.7, 40, 40),
+				
+							textureSol = new THREE.TextureLoader().load('./imagenes/sol.jpg'),
 
 					solMaterial = new THREE.MeshStandardMaterial({
-						color: 0xffffff
+						map: textureSol
 					}),
 
 					sol = new THREE.Mesh(solGeometry, solMaterial)
@@ -621,9 +467,15 @@ function init() {
 
 				sol.material.transparent = true
 
-				sol.material.opacity = 0.1
+				sol.material.opacity = 1
+				
+				//sol.material.emissive = new THREE.Color(0xffff00)
+				
+				sol.material.emissiveMap = textureSol
+				
+				sol.material.emissiveIntensity = 10
 
-				sol.position.x = -15
+				sol.position.x = -19
 
 				sol.position.y = -1
 
@@ -634,6 +486,8 @@ function init() {
 				// AGREGA LUZ PARA EL LADO OSCURO
 
 				var luzOscura = new THREE.SpotLight(0xffffff)
+				
+				luzOscura.name= 'luzoscura'
 
 				luzOscura.position.x = 0
 
@@ -688,11 +542,17 @@ function init() {
 
 				// create the skybox
 
-				var skybox = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), materialEspacio)
+				var skybox = new THREE.Mesh(new THREE.BoxGeometry(300, 300, 300), materialEspacio)
+				
+				skybox.name = 'fondo'
 
 				skybox.rotation.z = Math.PI / 2
 
-				scene.add(skybox)
+				//scene.add(skybox)
+				
+				scene.background = textureCube
+				
+				console.log(scene.children)
 
 			} // FIN CREA COSMOS
 
@@ -705,24 +565,10 @@ function init() {
 				var clickRaytrace = new THREE.Raycaster()
 
 				clickRaytrace.setFromCamera(clickPos, camera)
+				
+			//	clickRaytrace.far = 150
 
-				if (sceneVisible) {
-
-					var clickIntersects = clickRaytrace.intersectObjects(scene.children)
-
-				}
-
-				if (sceneCulturaVisible) {
-
-					var clickIntersects = clickRaytrace.intersectObjects(sceneCultura.children)
-
-				}
-
-				if (sceneTecnologiaVisible) {
-
-					var clickIntersects = clickRaytrace.intersectObjects(sceneTecnologia.children)
-
-				}
+				var clickIntersects = clickRaytrace.intersectObjects(scene.children)
 
 				detectaClickObjetos(clickIntersects)
 
@@ -739,9 +585,12 @@ function init() {
 
 
 		function detectaObjetos(intersects) {
+			
+				
 
 				if (intersects.length > 0) {
-
+					
+								
 					if (intersects[0].object.name == 'tierra') {
 
 					} else {
@@ -759,107 +608,46 @@ function init() {
 			} // FIN DETECTA OBJETOS
 
 		function detectaClickObjetos(clickIntersects) {
-
+				
 				if (clickIntersects.length > 0) {
+					
+					
 
 					if (clickIntersects[0].object.name == 'tierra') {
 
-						sceneTecnologiaVisible = false
-
-						sceneCulturaVisible = true
-
-						sceneEducacionVisible = false
-
-						sceneVisible = false
-
-						orbitControls.autoRotate = true
-
-						orbitControls.autoRotateSpeed = 2
+						$('#interfaz-tierra').show()
 
 					}
 
 					if (clickIntersects[0].object.name == 'satelite') {
 
-						sceneTecnologiaVisible = true
-
-						sceneCulturaVisible = false
-
-						sceneEducacionVisible = false
-
-						sceneVisible = false
-
-						orbitControls.autoRotate = true
-						orbitControls.autoRotateSpeed = 2
+						
 
 					}
 
-					if (clickIntersects[0].object.name == 'cometa') {
+					if (clickIntersects[0].object.name == 'sol') {
 
-						sceneTecnologiaVisible = false
-
-						sceneCulturaVisible = false
-
-						sceneEducacionVisible = true
-
-						sceneVisible = false
-
-						orbitControls.autoRotate = true
-
-						orbitControls.autoRotateSpeed = 2
+						
 
 					}
-					if (clickIntersects[0].object.name == 'tierraCultura') {
-
-						sceneCulturaVisible = false
-
-						sceneVisible = true
-
-						orbitControls.autoRotate = true
-
-						orbitControls.autoRotateSpeed = 0.5
-
-					}
-
-					if (clickIntersects[0].object.name.substr(0, 7) == 'cultura') {
-
-						let longitudIndice = clickIntersects[0].object.name.length - 7
-
-						let indice = Number(clickIntersects[0].object.name.substr(7, longitudIndice))
-
-						let fuente = mediaCultura[indice].url
-
-						let titulo = mediaCultura[indice].titulo
-
-						let autor = mediaCultura[indice].autor
-
-						let descripcion = mediaCultura[indice].descripcion
-
-						$('.media').attr('src', fuente)
-
-						$('#titulo-credito').html(titulo)
-
-						$('#autor-credito').html(autor)
-
-						$('#descripcion-credito').html(descripcion)
-
-						$('.contenedor-media').show('fade', 500, function() {
-
-								$('#titulo-credito').show('drop', 2000, function() {
-
-									$('#autor-credito').show('fade', 1000, function() {
-
-										$('#descripcion-credito').show('fade', 1000)
-
-									})
-
-								})
-
-							}) // FIN SHOW CONTENDOR MEDIA
-
-					}
-
-				} // FIN IF
+				}
 
 			} // FIN DETECTA CLICK OBJETOS
-
+			
+			
+						
 	} //FIN INIT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
